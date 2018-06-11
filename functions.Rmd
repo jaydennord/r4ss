@@ -1,0 +1,110 @@
+# Functions
+
+
+## Readings
+
+* [r4ds - 19 - Functions](http://r4ds.had.co.nz/functions.html)
+    * skip 19.6.2
+* [adv-r - 6 - Functions](https://adv-r.hadley.nz/functions.html)
+* [adv-r - 9 - Conditions](https://adv-r.hadley.nz/conditions.html)
+* here - `ifelse()` part 2
+* [R Packages: A Beginner's Guide](https://www.datacamp.com/community/tutorials/r-packages-guide) by Adolfo ?lvarez
+
+## Focus
+
+* purpose of functions
+* how to write a function; basic anatomy: arguments, body
+* default arguments
+* dot-dot-dot (`...`) argument
+* conditions: errors and warnings
+* lexical scoping
+* special functions
+    * infix
+    * replacement
+* how to use `do.call()`
+* packages
+    * installation, loading
+    * function conflicts
+    
+## `ifelse()` part 2
+
+In the previous chapter, an inappropriate use of `ifelse()` was demonstrated. The success of this inappropriate use depended on lazy evaluation. With newfound knowledge of function creation, we can further explore this issue. Previously, 
+
+```{r}
+x <- c(
+  7.973, 4.885,  2.676, 3.075, 7.701, 
+  5.363, 4.798, -0.406, 5.814, 5.682
+)
+
+z <- numeric(length(x))
+
+for (i in seq_along(x)) {
+  ifelse(x[i] < 5, z[i] <- NA, z[i] <- x[i]^2)
+}
+
+print(z)
+```
+
+Consider the case when `i == 2`. The test `x[2] < 5` resolves to `TRUE` and the argument `z[2] <- NA` will be used. As a side-effect, the assignment `z[2] <- NA` resolves. The argument `z[2] <- x[2]^2` is never used, so it never executes. Such is the consequence of lazy evaluation.
+
+We can, however, force arguments to evaluate non-lazily using `force()`. In the following code block, a new function `ifelse2()` is defined that forces the evaluation of all arguments. 
+
+```{r}
+x <- c(
+  7.973, 4.885,  2.676, 3.075, 7.701, 
+  5.363, 4.798, -0.406, 5.814, 5.682
+)
+
+ifelse2 <- function(...){
+  for(x in list(...)) force(x)
+  ifelse(...)
+}
+
+z2 <- numeric(length(x))
+
+for (i in seq_along(x)) {
+  ifelse2(x[i] < 5, z2[i] <- NA, z2[i] <- x[i]^2)
+}
+
+print(z2)
+```
+
+Again, the true result of `ifelse2()` and by extension `ifelse()` was never captured. The arguments, however, were evaluated in order. Thus, for all cases where `x[i] < 5 == TRUE`, `z2[i] <- NA` will occur, but then `z2[i] <- x[i]^2` will override the previous assignment. This should reinforce the idea that the inappropriate use of `ifelse()` was only successful because of lazy evaluation, not because the function was used as intended.
+
+Note that `ifelse2()` performs the same as `ifelse()` if used correctly.
+
+```{r}
+x <- c(
+  7.973, 4.885,  2.676, 3.075, 7.701, 
+  5.363, 4.798, -0.406, 5.814, 5.682
+)
+
+ifelse2(x < 5, NA, x^2)
+```
+
+## Exercises
+
+1. Consider the following code block involving matrix multiplication.
+    ```{r}
+    a <- matrix(1:4, ncol = 2)
+    b <- matrix(c(5, 3, 8, 9, 3, 4), ncol = 2)
+    
+    a %*% b
+    
+    b %*% a
+    ```
+    Using for-loops, create a function `mm`, in functional form, to mimic `%*%` wihtout using `%*%`. Create the infix version of `mm` as well without copy-and-pasting any code.
+    
+1. Consider the following code block.
+    ```{r}
+    x <- c(
+      1, 1, 1, 1,
+      2, 2, 2, 2,
+      3, 3, 3, 3,
+      4, 4, 4, 4,
+      5, 5, 5, 5
+    )
+    x <- matrix(x, nrow = 5, byrow = TRUE)
+    ```
+    Recreate `x` using `rep`, `list`, `do.call`, and `cbind`. Note that this is strictly an exercise and not an example of how to create matrices like `x` in practice.
+    

@@ -1,0 +1,46 @@
+
+# Generation from linear models
+
+
+## Linear combination review
+
+Some facts about linear combinations reviewed
+
+Let $\mathbf{X}$ be a $n\times p$ matrix of $n$ random samples of $X_1, \dots, X_p$. Let $\mathbf{b}$ be a $p \times 1$ vector of coefficients and let $\vec{Y}$ be a $n \times 1$ linear combination of $\mathbf{X}$ such that
+
+$$\vec{Y} = \mathbf{X}\mathbf{b}$$
+
+Then,
+
+$$E(Y) = E(\mathbf{X})\mathbf{b}$$
+
+$$\text{and}$$
+
+$$Var(Y) = \mathbf{b}'Cov(\mathbf{X})\mathbf{b} = \mathbf{b}'\mathbf{\Sigma}\mathbf{b}$$
+Readers may be more familiar with the case of two predictors ${X}_1$ and ${X}_2$ and two coefficients $b_1$ and $b_2$ in which
+
+$$E(Y) = b_1 E(X_1) + b_2 E(X_2)$$
+
+$$\text{and}$$
+
+$$Var(Y) = b_1^2 Var(X_1) + b_2^2 Var(X_2) + 2 b_1 b_2 Cov(X_1, X_2)$$
+
+## Exogeneity and endogeneity
+
+## General procedure
+
+## Examples
+
+### CRT
+
+### Correlated outcomes
+
+### Mediation
+
+### Multilevel
+
+### SEM
+
+## Exercises
+
+idk

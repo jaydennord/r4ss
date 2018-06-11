@@ -1,0 +1,40 @@
+
+# Statistics review
+
+
+Before describing random number generation, some terminology and estimation concepts are reviewed.
+
+A *random variable* is a variable that can assume various numerical outcomes subject to a random process. The probability of those outcomes are described by a *probability distribution*. Random variables are described and defined by paremeters (e.g. $\theta$). At any time, values of the random variable can be recorded; such recordings are called *observations* or *random variates*. Random variables tend to be denoted with upper-case letters (e.g. $X$) while observations tend to be denoted with lower-case letters (e.g. $x$).
+
+A *random sample* is a collection of $n$ random variables that are identically and independently distributed (iid). In this text, random samples will be denoted with vector notation such as $\vec{X} = X_1,\dots,X_n$. The *observed sample* then is the collection of observed values of a random sample, $\vec{x}=x_1,\dots, x_n$.
+
+A *statistic* is a function of the random sample and is itself a random variable. An *estimator* is a statistic intended to estimate some parameter $\theta$ and may be denoted as $W(\vec{X})=W$. Because an estimator is also a statistic, it is a random variable. An *estimate* is an observation of $W$ and is a numerical outcome of some function of the observed sample. An estimate may be denoted as $W(\vec{x})=w$ and calculated as a function of the observed sample.
+
+Properties of some estimator $W$ of $\theta$ are important for statistical inference. Ideally, $E(W)=\theta$ and $Var(W)$ is small. In some cases, we can derive the distribution of $W$ and use its properties to analytically calculate $E(W)$ and $Var(W)$. In other cases, such analytical calculations are either untenable or the distribution of $W$ is unknown such that no calculations are possible.
+
+The Law of Large Numbers is useful here. Let $W_i$, where $i=1,\dots,n$ be an estimator of $\theta$ and a statistic of some random sample $\vec{X}_i=X_{i1},\dots,X_{im}$. As $n\rightarrow \infty$,
+
+$${1 \over n}\sum_{i=1}^{n}{W_i} = \bar{W}=E(W)$$
+
+$$\text{and}$$
+
+$${1 \over {n-1}}\sum_{i=1}^{n}{\left(W_i-\bar{W}\right)^2}=S^2_W=Var(W)$$
+
+Essentially, the sample average of $\vec{W}=W_1,\dots, W_n$ is an estimator of $E(W)$ and the sample variance of $\vec{W}$ is an estimator of $Var(W)$. As we mortals are unlikely to witness $n\rightarrow \infty$, the quality of these estimates will be subject to size $n$. 
+
+Assuming we have values of $E(W)$ and $Var(W)$, we can calculate two additional statistics to aid in our understanding of $W$. These include bias and mean-squared-error (MSE). Bias tells us the accuracy of an estimator while MSE tells us the precision of an estimator and are calculated as follows:
+
+$$Bias(W) = E(W) - \theta$$
+
+$$MSE(W) = E\left\{(W-\theta)^2\right\} = Var(W) + \left\{Bias(W)^2\right\}$$
+
+Bias and MSE can be calculating from a random sample of $W$. By the Law of Large Numbers, as $n \rightarrow \infty$,
+
+$${1 \over n} \sum^n_{i=1}{\left(W_i - \theta\right)}=\bar{W}-\theta=Bias(W)$$
+
+$${1 \over {n-1}}\sum^n_{i=1}\left(W_i-\theta\right)^2= S^2_W+(\bar{W} -\theta)^2=MSE(W)$$
+
+Bias and MSE are random variables when estimated as a function of $\vec{W}$. These estimates of bias and MSE will then require confidence intervals to account for their uncertainty. 
+
+Simulation studies are focused on generating $\vec{X}_i, \dots \vec{X}_n$ and calculating $\vec{W}$ so that we may empirically derive the properties of $W$ when analytical solutions are untenable or unavailable. Understanding the generation of $\vec{X}_i$ is our next step.
+

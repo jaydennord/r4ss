@@ -1,0 +1,6 @@
+
+# Multiple replications and conditions
+
+* generation contained in a function
+* for-loop, `replicate()`
+* multiple generation conditions, `expand.grid()`

@@ -1,0 +1,65 @@
+
+
+# Random sampling and variate generation
+
+```{r, include = FALSE}
+set.seed(12479)
+```
+
+
+## Random sampling [INCOMPLETE]
+
+`sample()`
+
+## Univariate random samples [INCOMPLETE]
+
+For many distributions, R provides functions for density, cumulative distribution functions, quantile functions, and random generation. These functions are of the form `dxxx`, `pxxx`, `qxxx`, and `rxxx`. We are more interested in the random generation functions `rxxx`. See `help(Distributions)` for a full list. 
+
+
+
+## Multivariate normal samples [INCOMPLETE]
+
+Here, multivariate data refers to multiple non-independent random variables. There are two ways to generate data from a multivariate normal distribution. The first is to use a Cholesky decomposition and the second is to use `MASS::mvrnorm()`. Both approaches require a population covariance matrix.
+
+```{r}
+library(MASS)
+set.seed(12479)
+
+nobs <- 1e4
+
+# population covariance matrix
+Sigma <- matrix(c(
+  3, 1, 0,
+  1, 5, 0,
+  0, 0, 10
+), nrow = 3)
+
+# Using chol()
+x0 <- replicate(3, rnorm(nobs))
+x <- (x0 %*% chol(Sigma)) + rep(c(8, 3, 2), each = nobs)
+
+colMeans(x)
+
+cov(x)
+
+
+# Using MASS::mvrnorm()
+x <- mvrnorm(n = nobs, mu = c(8, 3, 2), Sigma = Sigma)
+
+colMeans(x)
+
+cov(x)
+```
+
+The sample covariance matrix is roughly equivalent to the population covariance matrix `Sigma` as expected. The sample mean vector is also roughly equivalent to the population mean vector as expected. It appears that `MASS::mvrnorm` is simpler than the `chol` method. The `chol` method, however, will be useful for generating normally distributed data with additional skew and kurtosis.
+
+
+## Pseudo-randomness [INCOMPLETE]
+
+Computer programs used for random sample generation do not produce truly random values. Instead, complex algorithms mimic randomness to produce *pseudo-random numbers*. These algorithms begin with an arbitrary starting value, or *seed*, that updates with each generated values. Unless otherwise specified, the seed is based on the internal clock of the computer's processor. (need to fact check that statement)
+
+Pseudo-randomness for simulation studies has the advantage of reproducibility. If one writes a program and provides a fixed value for the seed, then the program will return the same results on every run. 
+
+
+## Exercises
+

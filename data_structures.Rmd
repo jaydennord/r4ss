@@ -1,0 +1,335 @@
+# Data structures and operations
+
+
+
+## Readings
+
+* [intro-r - 2 - Simple manipulations; numbers and vectors](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+    * skip 2.7
+* [intro-r - 3 - Objects, their modes and attributes](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+* [adv-r - 4 - Vectors](https://adv-r.hadley.nz/data-structures.htm) (misnomer chapter title)
+* [r4ds - 20 - Vectors](http://r4ds.had.co.nz/vectors.html)
+    * skip 20.4.5, 20.7.2
+    * 20.7.3 not required
+* my own matrix chapter
+
+## Focus
+
+* Vectors
+    * definition of a vector
+    * difference between atomic and recursive vectors (i.e. lists)
+    * the three common types of atomic vectors (logical, numeric, character)
+    * creating vectors using `c()`, `rep()`, `seq()`, and friends
+    * definition of a factor
+    * math and logic vectorized operations; understand recycling
+    * math and logic summary operations
+    * `paste()` and `paste0()`
+    * implicit and explicit coercion
+* Matrices
+    * definition of a matrix
+    * difference between vectors and matrices
+    * creating matrices efficiently
+    * fundamental matrix math and algebra functions; understand recycling
+    * binding and concatenation
+    * results of `length()`, `nrow()`, and `ncol()` and why
+* Data frames
+    * relationship between a data.frame and a...
+        * list
+        * matrix
+    * creating data frames from scratch or by coercion
+    * binding and concatenation
+    * preventing coercion of components to factor and why we would want to prevent such a coercion
+    * results of `length()`, `nrow()`, and `ncol()` and why
+* All
+    * attributes, primarily names; getting and setting names of elements/components/dimensions
+    * missing values; the default type of `NA`
+    
+
+## Matrices
+
+
+*Arrays* are data structures with two or more dimensions; two or more index values are required to identify a specific element. A *matrix* is an array with only two dimensions. In R, an array is technically a vector with additional dimension attributes.
+
+### Matrix creation
+
+There are many ways to create matrices and arrays (see [here](http://adv-r.had.co.nz/Data-structures.html#matrices-and-arrays)), but we will focus on the `matrix` function, which has the following arguments:
+
+* `data`
+* `nrow`
+* `ncol`
+* `byrow`
+* `dimnames`
+
+The `data` argument is required and is typically a vector (atomic or not). If `nrow` and `ncol` are not provided, `data` is made into a one-column matrix. If only one of `nrow` and `ncol` are provided, then the other is calculated as `length(data)` divided by the given. If the result is not an integer, the result is rounded, a warning message is issued, and recycling rules are invoked (see next chapter) to fill the matrix.
+
+The arguments `nrow` and `ncol` define the matrix dimensions. By default, values of `data` fill the matrix column-wise. That is, columns are filled top-down before the next column is filled. For example,
+
+```{r}
+matrix(1:9, ncol = 3)
+```
+
+The number of rows (`nrow`) was determined by the length of `1:9` being divided by `ncol`. The vector `1:9` then filled the $3 \times 3$ matrix by column. Filling by column is the default behavior of `matrix` because `byrow = FALSE` by default. Using `byrow = TRUE` fills by row.
+
+```{r}
+matrix(1:9, ncol = 3, byrow = TRUE)
+```
+
+A consequence of `c` is that dimensions (and all other attributes except names) are removed from the arguments. Thus, using `c` on a matrix can be used to transform the matrix into a vector. The resulting vector from `c` on a matrix is assembled by column. There is no optional argument of `c` such that the vector is assembled by row. 
+
+```{r}
+x <- matrix(1:9, ncol = 3)
+c(x)
+
+y <- matrix(1:9, ncol = 3, byrow = TRUE)
+c(y)
+```
+
+We can see how a matrix has both a `dim` attribute and a `class`, which should not be confused with the matrix's data type.
+
+```{r}
+x <- matrix(1:9, ncol = 3)
+attributes(x)
+
+class(x)
+
+typeof(x)
+```
+
+### Dimensions and length [INCOMPLETE]
+
+
+### Dimnames and names [INCOMPLETE]
+
+```{r}
+x <- matrix(1:4, nrow = 2, dimnames = list(c("r1", "r2"), c("c1", "c2")))
+print(x)
+
+y <- matrix(1:4, nrow = 2)
+rownames(y) <- c("r1", "r2")
+colnames(y) <- c("c1", "c2")
+print(y)
+
+z <- matrix(1:4, nrow = 2, dimnames = list(NULL, c("c1", "c2")))
+print(z)
+```
+
+
+### Matrix binding
+
+Because `c` removes the dimensions attribute, it cannot be used to concatenate matrices. Furthermore, `c` does not specify the dimensions along which the concatenation is supposed to occur. To concatenate two or more matrices together, the `cbind` and `rbind` functions are used. `cbind` is used to bind columns while `rbind` is used to bind rows. Arguments of `cbind` must have the same number of rows while arguments of `rbind` have the same number of columns. 
+
+```{r}
+x <- matrix(1:4, nrow = 2)
+y <- matrix(5:8, nrow = 2)
+
+cbind(x, y)
+
+rbind(x, y)
+```
+
+If the arguments are vectors, the binding function will automatically turn the vectors into matrices. `cbind` turns vectors into one-column matrices while `rbind` turns vectors into one-row matrices. Binding will also use argument or object names as dimension names for the vector.
+
+```{r}
+x <- y <- 1:3
+
+cbind(1:3)
+
+rbind(1:3)
+
+cbind(x, y)
+
+cbind(x = 1:3, y = 1:3)
+
+z <- matrix(1:6, nrow = 3, dimnames = list(NULL, c("z1", "z2")))
+cbind(z, x = 1:3)
+```
+
+
+
+### Matrix coercion
+
+The implicit coercion hiearchy applies to matrices.
+
+```{r}
+x <- matrix(1:4, ncol = 2)
+typeof(x)
+
+y <- x * .5
+typeof(y)
+
+lettered_mat <- matrix(c("a", "b", "c", "d"), ncol = 2)
+z <- cbind(x, lettered_mat)
+print(z)
+
+typeof(z)
+```
+
+Using explicit coercion functions (i.e. `as.###`) will remove the dimensions attribute from the matrix, creating a vector. Using `mode<-`, however, will maintain dimensions because `mode<-` only changes the data type, leaving the dimension attribute untouched.
+
+```{r}
+x <- matrix(1:4, ncol = 2)
+as.character(x)
+
+mode(x) <- "character"
+print(x)
+```
+
+
+
+### Matrix operations
+
+
+`*` does not invoke matrix multiplication. This is sensible because `*` is a vectorized operator; matrix elements are multiplied together as if their underlying vectors were cross-multiplied. For matrix multiplication, the operator `%*%` is used instead.
+
+```{r}
+x <- matrix(1:9, nrow = 3)
+y <- matrix(9:1, nrow = 3)
+
+x * y
+
+x %*% y
+```
+
+Other useful functions related to matrices.
+
+|function|description|
+|------------|---------------------------------------------------------------------|
+|`var`, `cov`|Compute the covariance matrix of some input matrix
+|`t`|transpose|
+|`solve`|inverse of a square matrix. Can also solve a system of linear equations if a second argument is provided|
+|`det`|find determinant of a matrix|
+|`eigen`|find eigenvalues and eigenvalues of a matrix|
+|`chol`|performs a Cholesky decomposition on a matrix - useful for multivariate data generation|
+
+`diag` is another matrix-related though frustrating function because its behavior and results change depending on the input. The table below describes the different results of some object `x`.
+
+|Input|Output|
+|---------------------------|-------------------------------|
+|`x` is numeric and length 1|An $x\times x$ identity matrix|
+|`x` is numeric and length = $y>1$|A $y\times y$ matrix with diagonal elements equal to `x` and off-diagonals equal to 0.|
+|`x` is a square matrix|Atomic vector whose elements are the diagonals of `x`|
+
+For example,
+
+```{r}
+diag(3)
+
+diag(4:6)
+
+diag(matrix(1:9, nrow = 3))
+```
+
+`diag<-` can also be used to overwrite the diagonal of a matrix.
+
+```{r}
+x <- matrix(.5, nrow = 3, ncol = 3)
+x
+
+diag(x) <- rep(1, 3)
+x
+```
+
+Occassionally, we must find sums/means of rows or sums/means of columns of a matrix. The `mean()` and `sum()` functions will not work because they ignore the dimensions and matrix class of their input; they only work on atomic vectors. Though looping procedures can accomplish these row and column operations, fast efficient functions exist for these tasks.
+
+* `rowSums`
+* `rowMeans`
+* `colSums`
+* `colMeans`
+
+```{r}
+x <- matrix(1:9, nrow = 3)
+
+rowSums(x)
+
+rowMeans(x)
+
+colSums(x)
+
+colMeans(x)
+```
+
+
+
+
+## Exercises
+
+1. What will be the data type of the following vectors? Why?
+    a. `c(0, 4, "2")`
+    a. `c(1:4, NA_real_)`
+    a. `c(1:4, NA)`
+    a. `-7:1 * 2L`
+    a. `-7:1 * 2`
+    
+
+1. Consider the following code block.
+
+    ```{r}
+    x <- "First line here.
+      Second line here."
+    
+    cat(x)
+    ```
+    The author intended the "Second line here" to be printed with no indentation. Why was indentation produced?
+    
+1. Using the followving vectors,
+    ```{r}
+    a <- c(3, 4, 8, 9)
+    b <- c(2, 7, 5, 6)
+    c <- c(3, 9, 1, 2)
+    ```
+    create a $4\times 3$ matrix in two ways. Include column names without the use of `colnames()`
+    a. with `c()` and `matrix()`
+    b. with `cbind()`
+
+1. The creation of `x` in the following codeblock is tedious.
+    ```{r}
+    x <- c(
+      1, 1, 1, 1,
+      2, 2, 2, 2,
+      3, 3, 3, 3,
+      4, 4, 4, 4,
+      5, 5, 5, 5
+    )
+    x <- matrix(x, nrow = 5, byrow = TRUE)
+    ```
+    Recreate `x` using sequences, `rep()`, and two different approaches:
+    a. with `byrow = FALSE`
+    b. with `byrow = TRUE`
+    
+    Each approach should be written with only one line of code.
+
+1. Given `x <- c("300 mg", "500 mg", "200 mg")`, create a factor such that the values will sort in "descending" order. Include 100 and 400 mg as possible levels.
+
+1. Given `x`, use vectorized operations to determine which elements of `x` are less than or equal to 95 and greater than or equal to 75. The result should be a logical vector.
+    ```{r}
+    x <- c(
+      82, 82, 94, 67, 79, 
+      68, 74, 103, 61, 70, 
+      74, 70, 69, 63, 70
+    )
+    ```
+
+
+1. In the following code block, a user wanted to create a logical vector specifying which elements were equal to one or two. The results are not what the user intended. What is the mistake and what caused it? How would you correct the mistake? (Note: there are at least three ways)
+    ```{r}
+    x <- c(1, 2, 1, 1, 3, 3, 2, 1, 0, 0)
+    x == c(1, 2)
+    ```
+
+1. A user has a matrix `x` defined below. The user intended to multiply the first column by three and the second column by two. The results are not what the user intended. 
+    ```{r}
+    x <- matrix(1:6, ncol = 2)
+    x
+    
+    x * c(3, 2)
+    ```
+    What is the mistake and what caused it? Correct the mistake using three approaches:
+    a. Using `t()` without `rep()`
+    b. Using `rep()` without `t()`
+    c. Using `%*%`
+    
+
+
+
+
+

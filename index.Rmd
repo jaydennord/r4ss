@@ -1,0 +1,21 @@
+---
+title: "R for Simulation Studies"
+author: Jayden Nord
+site: bookdown::bookdown_site
+output:
+  bookdown::gitbook:
+    config:
+      toc:
+        collapse: section
+      sharing: no
+  # bookdown::pdf_book: 
+  #   keep_tex: no
+  #   pandoc_args: --top-level-division=chapter
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, error = TRUE, comment = "#>", cache = TRUE)
+```
+
+# Preface {-}
+

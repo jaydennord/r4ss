@@ -1,0 +1,17 @@
+output_dir: "../jaydennord.github.io/r4ss"
+rmd_files: [
+  "index.Rmd",
+  
+  "r_essentials.Rmd",
+  "data_structures.Rmd",
+  "indexing.Rmd",
+  "control_structures.Rmd",
+  "functions.Rmd",
+  "functionals.Rmd",
+  
+  "data_generation.Rmd",
+  "stats_review.Rmd",
+  "rng.Rmd",
+  "gen_from_lm.Rmd",
+  "gen_mult.Rmd"
+]

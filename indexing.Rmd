@@ -1,0 +1,35 @@
+# Indexing
+
+
+I will refer to indexing as the act of subsetting, accessing, or modifying elements, components, or parts of an object. Indexing is critical for manipulating or accessing parts of objects. 
+
+## Readings
+
+* [adv-r - 5 - Subsetting](https://adv-r.hadley.nz/subsetting.html)
+    * 5.5 not required
+
+## Focus
+
+* Four main types of indexing and how to use
+    * logical
+    * positive integer
+    * negative integer
+    * name
+* Three indexing operators and the differences among them
+    * `[`
+    * `[[`
+    * `$`
+* Using indices to...
+    * subset
+    * arrange
+    * modify-in-place
+
+## Exercises
+
+1. Let 
+    ```{r}
+    x <- matrix(1:16, nrow = 4)
+    y <- matrix(1:12, nrow = 4)
+    ```
+    Using indexes, cross-multiply the second row of `x` and the third column of `y`. What is the sum of the resulting vector?
+    

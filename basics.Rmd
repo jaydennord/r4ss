@@ -1,0 +1,39 @@
+
+
+# Basics
+
+## Calculations
+
+## Object assignment
+
+* naming overrides
+
+## Functions prelude
+
+* usage, parentheses
+* argument listing by name or position
+* naming overrides
+
+## Style
+
+```{r}
+x <- c(1:10,NA,100);if(all(is.na(x))){sum_x <- NA_real_}else{sum_x<-0;
+for(i in seq_along(x)){if (is.na(x[i]))next;sum_x<-sum_x+x[i]}};sum_x
+```
+
+```{r}
+x <- c(1:10, NA, 100)
+
+if (all(is.na(x))) {
+  sum_x <- NA_real_
+} else {
+  sum_x <- 0
+  for(i in seq_along(x)) {
+    if (is.na(x[i])) next
+    sum_x <- sum_x + x[i]
+  }  
+}
+
+sum_x
+```
+

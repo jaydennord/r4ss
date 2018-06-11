@@ -1,0 +1,129 @@
+# Control structures
+
+
+If-else statements and for-loops are ubiquitous among all programming languages. If-else statements allow different pieces of code to be ran if different conditions are fulfilled. For-loops allow us to repeat lines of code that would otherwise be copy-and-pasted. If you have learned these control structures in another language, it should be straightforward to learn them in R. If you learn these control structures first in R, it should be straightforward to learn them in other languages.
+
+## Readings
+
+* [intro-r - 9 - Grouping, loops, and conditional execution](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+* [rldef - 3.2 - Control structures](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Control-structures)
+* here - `ifelse()` part 1
+* [r4ds - 21 - Iteration](http://r4ds.had.co.nz/iteration.html)
+    * Only 21.1 through 21.3
+    
+## Focus
+
+* What `;` or `{` do
+* if-else statements
+    * when and how to use if-else statements
+    * how if-else statements or chains are evaluated
+    * difference between if-else statements and `ifelse()`
+* for-loops
+    * when and how to use a for-loop
+    * pre-allocation
+    
+## `ifelse()` part 1
+
+Although not strictly a "control structure", the `ifelse()` function must be discussed here so as to not confuse it with if-else statements. The `ifelse()` function is a vectorized version of if-else statements applied to each element of a vector. The function has three arguments: `test`, `yes`, and `no`. `test` is a logical vector and for each instance of `TRUE`, the same positioned element from `yes` is used in the result. For each instance of `FALSE` in `test`, the same poisitioned element from `no` is used in the result.
+
+With `x` defined below, we declare values that are less than 5 as `NA`. Furthermore, we arbitrarily square elements that are greater than or equal to 5. First, a naive approach using for-loops and if-else statements is used. Then, a `ifelse()` approach is demonstrated.
+
+Naive approach:
+```{r}
+x <- c(
+  7.973, 4.885,  2.676, 3.075, 7.701, 
+  5.363, 4.798, -0.406, 5.814, 5.682
+)
+
+z <- numeric(length(x))
+
+for (i in seq_along(x)) {
+  if (x[i] < 5) {
+    z[i] <- NA
+  } else {
+    z[i] <- x[i]^2
+  }
+}
+
+print(z)
+```
+
+`ifelse()` approach:
+```{r}
+x <- c(
+  7.973, 4.885,  2.676, 3.075, 7.701, 
+  5.363, 4.798, -0.406, 5.814, 5.682
+)
+
+z <- ifelse(x < 5, NA, x^2)
+
+print(z)
+```
+
+The following table may help illustrate how `ifelse()` works.
+
+```{r}
+data.frame(x = x, test = x < 5, yes = NA, no = x^2, result = z)
+```
+
+A heinous abuse of `ifelse()` sometimes occurs when one does not understand the difference between `ifelse()` and if-else statements.
+
+```{r}
+x <- c(
+  7.973, 4.885,  2.676, 3.075, 7.701, 
+  5.363, 4.798, -0.406, 5.814, 5.682
+)
+
+z <- numeric(length(x))
+
+for (i in seq_along(x)) {
+  ifelse(x[i] < 5, z[i] <- NA, z[i] <- x[i]^2)
+}
+
+print(z)
+```
+
+Understanding this travesty may require understanding of lazy-evaluation. Lazy-evaluation refers to the fact that functions only evaluate arguments when those arguments are needed. For each `i`th iteration, `x[i] < 5` is tested. If the test is true, `z[i] <- NA` is used. Because the test is length one, `z[i] <- NA` executes, using or evaluating only `yes` and ignoring `no`. The argument `yes`, however, is also an assignment. When an assignment is also an argument, the assignment occurs and the value of the assignment is used as the argument. The result of `ifelse()`, however, is discarded, and `z[i]` is only populated as a side-effect of the assignment-within-argument. A similar outcome occurs if `x[i] < 5` is false. Essentially, the use of `ifelse()` was wasted. 
+
+
+
+
+## Exercises
+
+1. The if-else statements below are resulting in an error. What is the cause of the error and how should it be fixed?
+    ```{r, eval = FALSE}
+    x <- "1"
+    if (is.numeric(x)) {
+      print("this is a number")
+    }
+    else {
+    #> Error: unexpected 'else' in "else"
+      print("this is not a number")
+    #> [1] "this is not a number"
+    }
+    #> Error: unexpected '}' in "}"
+    ```
+    
+
+1. Use for-loops to mimic `colMeans` and `rowMeans` for the following matrix
+    ```{r}
+    x <- matrix(c(
+      9, 4, 3, 10,
+      7, 4, 2, 15,
+      0, 1, 3, 19
+    ), nrow = 3, byrow = TRUE)
+    
+    a <- colMeans(x)
+    b <- rowMeans(x)
+    ```
+
+1. Consider two vectors and their product
+    ```{r}
+    x <- c(5, 4, 3, 9, 1)
+    y <- c(2, 4)
+    z <- x * y
+    
+    z
+    ```
+    Write a short script that uses a for-loop to mimic `z <- x * y`. Hint: See `?rep` for other useful repeater functions.
+    
