@@ -9,3 +9,4 @@ _book
 libs
 *_cache
 r4ss
+.*json

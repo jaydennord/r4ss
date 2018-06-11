@@ -6,7 +6,7 @@ Some introductory text idk. Hello world.
 
 Documents that support this book
 
-* [*An Introduction to R*](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) by Venables, Smith, and the R Core Team. Abbreviated as "intro-r". PDF download [here](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf).
+* [*An Introduction to R*](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) by Venables, Smith, and the R Core Team. Abbreviated as "intro-r". PDF download [here](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf).
 * [*R Language Definition*](https://cran.r-project.org/doc/manuals/r-release/R-lang.html) by the R Core Team. Abbreviated as "rldef". PDF download [here](https://cran.r-project.org/doc/manuals/r-release/R-lang.pdf).
 * [*Advanced R*](https://adv-r.hadley.nz/) by Hadley Wickham. Abbreviated as "adv-r".
 * [*R for Data Science*](http://r4ds.had.co.nz/) by Grolemund and Wickham. Abbreviated as "r4ds".
@@ -16,7 +16,7 @@ Documents that support this book
 
 ## Readings
 
-* [intro-r - 1 - Introduction](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+* [intro-r - 1 - Introduction](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Introduction-and-preliminaries)
     * skip 1.2 through 1.6
 * [r4ds - 4 - Workflow: basics](http://r4ds.had.co.nz/workflow-basics.html)
 * [r4ds - 6 - Workflow: scripts](http://r4ds.had.co.nz/workflow-scripts.html)

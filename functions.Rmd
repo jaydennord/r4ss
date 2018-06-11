@@ -8,7 +8,7 @@
 * [adv-r - 6 - Functions](https://adv-r.hadley.nz/functions.html)
 * [adv-r - 9 - Conditions](https://adv-r.hadley.nz/conditions.html)
 * here - `ifelse()` part 2
-* [R Packages: A Beginner's Guide](https://www.datacamp.com/community/tutorials/r-packages-guide) by Adolfo ?lvarez
+* [R Packages: A Beginner's Guide](https://www.datacamp.com/community/tutorials/r-packages-guide) by Adolfo Alvarez
 
 ## Focus
 

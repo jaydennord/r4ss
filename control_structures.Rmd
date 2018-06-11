@@ -5,7 +5,7 @@ If-else statements and for-loops are ubiquitous among all programming languages.
 
 ## Readings
 
-* [intro-r - 9 - Grouping, loops, and conditional execution](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+* [intro-r - 9 - Grouping, loops, and conditional execution](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Loops-and-conditional-execution)
 * [rldef - 3.2 - Control structures](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Control-structures)
 * here - `ifelse()` part 1
 * [r4ds - 21 - Iteration](http://r4ds.had.co.nz/iteration.html)
