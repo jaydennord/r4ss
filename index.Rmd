@@ -19,3 +19,9 @@ knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, error = TRUE, comment = "#>"
 
 # Preface {-}
 
+Published with [bookdown](https://bookdown.org/).
+
+View book source code or make comments and suggestions at the [GitHub repository](https://github.com/jaydennord/r4ss)
+
+This work is licensed under the [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/)
+
