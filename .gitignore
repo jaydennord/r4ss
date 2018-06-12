@@ -1,12 +1,7 @@
 .Rproj.user
 .Rhistory
-archive
-_bookdown_files
-_book
-*.Rproj
 *.docx
 *.html
 libs
-*_cache
 r4ss
 .*json
