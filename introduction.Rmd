@@ -1,8 +1,6 @@
+# Introduction {#intro}
 
-# Statistics review
-
-
-Before describing random number generation, some terminology and estimation concepts are reviewed.
+## Statistics review
 
 A *random variable* is a variable that can assume various numerical outcomes subject to a random process. The probability of those outcomes are described by a *probability distribution*. Random variables are described and defined by paremeters (e.g. $\theta$). At any time, values of the random variable can be recorded; such recordings are called *observations* or *random variates*. Random variables tend to be denoted with upper-case letters (e.g. $X$) while observations tend to be denoted with lower-case letters (e.g. $x$).
 
@@ -38,3 +36,4 @@ Bias and MSE are random variables when estimated as a function of $\vec{W}$. The
 
 Simulation studies are focused on generating $\vec{X}_i, \dots \vec{X}_n$ and calculating $\vec{W}$ so that we may empirically derive the properties of $W$ when analytical solutions are untenable or unavailable. Understanding the generation of $\vec{X}_i$ is our next step.
 
+## Simulation studies

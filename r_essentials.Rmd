@@ -1,6 +1,6 @@
 # (PART) R essentials {-}
 
-# Introduction
+# Introduction {#r-essentials-intro}
 
 Some introductory text idk. Hello world.
 

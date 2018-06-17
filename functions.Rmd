@@ -7,7 +7,7 @@
     * skip 19.6.2
 * [adv-r - 6 - Functions](https://adv-r.hadley.nz/functions.html)
 * [adv-r - 9 - Conditions](https://adv-r.hadley.nz/conditions.html)
-* here - `ifelse()` part 2
+* [here - `ifelse()` part 2][`ifelse()` part 2]
 * [R Packages: A Beginner's Guide](https://www.datacamp.com/community/tutorials/r-packages-guide) by Adolfo Alvarez
 
 ## Focus
@@ -28,7 +28,7 @@
     
 ## `ifelse()` part 2
 
-In the previous chapter, an inappropriate use of `ifelse()` was demonstrated. The success of this inappropriate use depended on lazy evaluation. With newfound knowledge of function creation, we can further explore this issue. Previously, 
+In the [previous chapter][`ifelse()` part 1], an inappropriate use of `ifelse()` was demonstrated. The success of this inappropriate use depended on lazy evaluation. With newfound knowledge of function creation, we can further explore this issue. Previously, 
 
 ```{r}
 x <- c(

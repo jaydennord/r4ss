@@ -8,10 +8,11 @@
     * skip 2.7
 * [intro-r - 3 - Objects, their modes and attributes](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Objects)
 * [adv-r - 4 - Vectors](https://adv-r.hadley.nz/data-structures.htm) (misnomer chapter title)
+* [here - Matrices][Matrices]
 * [r4ds - 20 - Vectors](http://r4ds.had.co.nz/vectors.html)
     * skip 20.4.5, 20.7.2
     * 20.7.3 not required
-* my own matrix chapter
+
 
 ## Focus
 
