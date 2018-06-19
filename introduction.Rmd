@@ -6,9 +6,9 @@ A *random variable* is a variable that can assume various (typically numerical) 
 
 A *random sample* is a collection of $n$ random variables that are identically and independently distributed (iid). In this text, random samples will be denoted with vector notation such as $\vec{X} = X_1, \dots, X_n$. The *observed sample* is the collection of observed values of a random sample, $\vec{x} = x_1, \dots, x_n$. 
 
-A *statistic* is a function of the random sample and is itself a random variable. An *estimator* is a statistic intended to estimate some parameter $\theta$ and may be denoted as $W(\vec{X})=W$. Because an estimator is also a statistic, it is a random variable. An *estimate* is an observation of $W$ and is a numerical outcome of some function of the observed sample. An estimate may be denoted as $W(\vec{x})=w$ and calculated as a function of the observed sample.
+A *statistic* is a function of the random sample and is itself a random variable. An *estimator* is a statistic intended to estimate some parameter $\theta$ and may be denoted as $W(\vec{X})=W$. Because an estimator is also a statistic, it is a random variable. An *estimate* is an observation of $W$ and is a numerical outcome of $W(\vec{x})=w$; it is a function of the observed sample. 
 
-Properties of some estimator $W$ of $\theta$ are important for statistical inference. Ideally, $W$ is *accurate* and *precise* or $\mathrm{E}(W)-\theta$ and $\mathrm{Var}(W)$ are close to zero.
+Properties of some estimator $W$ of $\theta$ are important for statistical inference. Ideally, $W$ is *accurate* and *precise* or $\mathrm{E}W-\theta$ and $\mathrm{Var}W$ are close to zero. The bias of $W$ is another term for $\mathrm{E}W-\theta$. 
 
 
 In some cases, we can derive the distribution of $W$ and use its properties to analytically calculate $E(W)$ and $Var(W)$. In other cases, such analytical calculations are either untenable or the distribution of $W$ is unknown such that no calculations are possible.

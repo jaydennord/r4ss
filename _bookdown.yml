@@ -9,10 +9,10 @@ rmd_files: [
   "indexing.Rmd",
   "control_structures.Rmd",
   "functions.Rmd",
-  "functionals.Rmd",
+  "functionals.Rmd"
   
-  "data_generation.Rmd",
-  "rng.Rmd",
-  "gen_from_lm.Rmd",
-  "gen_mult.Rmd"
+  #"data_generation.Rmd",
+  #"rng.Rmd",
+  #"gen_from_lm.Rmd",
+  #"gen_mult.Rmd"
 ]
