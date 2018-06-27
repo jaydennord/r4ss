@@ -2,19 +2,19 @@
 
 # Introduction {#r-essentials-intro}
 
-Some introductory text idk. Hello world.
-
-Documents that support this book
+This section is a curation of resources for learning R. Readings are primarily sourced from the following texts:
 
 * [*An Introduction to R*](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) by Venables, Smith, and the R Core Team. Abbreviated as "intro-r". PDF download [here](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf).
 * [*R Language Definition*](https://cran.r-project.org/doc/manuals/r-release/R-lang.html) by the R Core Team. Abbreviated as "rldef". PDF download [here](https://cran.r-project.org/doc/manuals/r-release/R-lang.pdf).
 * [*Advanced R*](https://adv-r.hadley.nz/) by Hadley Wickham. Abbreviated as "adv-r".
 * [*R for Data Science*](http://r4ds.had.co.nz/) by Grolemund and Wickham. Abbreviated as "r4ds".
 
-
+In each R essentials chapter, including this chapter, there is a list of *readings*. Following the list of readings is a *focus* section that outlines important concepts to be gained from the readings. At the end of each chapter, exercises are (usually) provided. 
 
 
 ## Readings
+
+Primary readings
 
 * [intro-r - 1 - Introduction](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Introduction-and-preliminaries)
     * skip 1.2 through 1.6
@@ -23,12 +23,19 @@ Documents that support this book
 * [r4ds - 8 - Workflow: projects](http://r4ds.had.co.nz/workflow-projects.html)
 * [rldef - 3.2 Control structures](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Control-structures)
     * skip subsections
-* [adv-r - 3 - Names and values](https://adv-r.hadley.nz/names-values.html)
-    * may not be useful until future readings are completed
-* [Vocabulary](http://adv-r.had.co.nz/Vocabulary.html) from *Advanced R - 1st Edition*
-    * may not be useful until future readings are completed
 * [Hadley Wickham's style guide](http://adv-r.had.co.nz/Style.html)
 * [Google's R style guide](https://google.github.io/styleguide/Rguide.xml)
+
+Secondary readings
+
+* [adv-r - 3 - Names and values](https://adv-r.hadley.nz/names-values.html)
+* [Vocabulary](http://adv-r.had.co.nz/Vocabulary.html) from *Advanced R - 1st Edition*
 * [adv-r - 26 - Optimising code](https://adv-r.hadley.nz/profiling.html)
 
 ## Focus
+
+The primary readings should be read and the secondary readings are only encouraged. The primary readings are to help you learn how to use R and RStudio at their most basic level. Style guides are provided so as to learn how to write code in a readable manner. The secondary readings are provided as exposure; they contain concepts that may not be understandable if you have not used R extensively. The secondary readings should be revisited occasionally as your R knowledge base grows.
+
+## Exercises
+
+None.
