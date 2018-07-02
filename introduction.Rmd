@@ -8,35 +8,24 @@ A *random sample* is a collection of $n$ random variables that are identically a
 
 A *statistic* is a function of the random sample and is itself a random variable. An *estimator* is a statistic intended to estimate some parameter $\theta$ and may be denoted as $W(\vec{X})=W$. Because an estimator is also a statistic, it is a random variable. An *estimate* is an observation of $W$ and is a numerical outcome of $W(\vec{x})=w$; it is a function of the observed sample. 
 
-Properties of some estimator $W$ of $\theta$ are important for statistical inference. Ideally, $W$ is *accurate* and *precise* or $\mathrm{E}W-\theta$ and $\mathrm{Var}W$ are close to zero. The bias of $W$ is another term for $\mathrm{E}W-\theta$. 
+Properties of some estimator $W$ of $\theta$ are important for statistical inference. Ideally, $W$ is *accurate* and *precise* or $\mathrm{E}W-\theta$ is small (accuracy) and $\mathrm{Var}W$ is small (precision). The expression $W-\theta$ is referred to as error and its expectation $\mathrm{E}\left(W-\theta\right) = \mathrm{E}W-\theta$ is referred to as *bias*. The expectation of squared errors or *mean squared error* (MSE) is expressed as $\mathrm{E}\left[\left(W-\theta\right)^2\right]$. Mathematical proofs will show that MSE can also be expressed as $\mathrm{Var}W + \mathrm{Bias}^2W$. That is, MSE contains information about the precision and accuracy of $W$. If $W$ is unbiased, $\mathrm{E}W=\theta$, then $\mathrm{MSE}(W)=\mathrm{Var}W$. Ratios of MSEs are often used to compare estimators.
+
+In some cases, we can derive the distribution of $W$, the *sampling distribution*, and use its properties to analytically calculate $E(W)$ and $Var(W)$ and thus and bias and MSE. For example, consider the sample mean of a random sample from the normal distribution. Let  $X_1, \dots, X_n$ be iid normal with some mean $\mu$ and some variance $\sigma^2$. That is, $X_i \sim N(\mu, \sigma^2)$. The sample mean is calculated as $\bar{X} = n^{-1}\sum^n_{i=1}{X_i}$ and is an estimator of $\mu$. It is known that $\bar{X} \sim N(\mu, n^{-1}\sigma^2)$.
+
+$\mathrm{Bias}(\bar{X})=\mathrm{E}\left(\bar{X} - \mu\right) = \mathrm{E}\bar{X} - \mu = \mu-\mu=0$, so $\bar{X}$ is an unbiased estimator of $\mu$. Thus, $\mathrm{MSE}(W) = \mathrm{Var}W = n^{-1}\sigma^2$. The variance of $W$ decreases as $n$ increases; the precision of $\bar{X}$ as an estimator of $\mu$ improves with larger sample sizes. 
 
 
-In some cases, we can derive the distribution of $W$ and use its properties to analytically calculate $E(W)$ and $Var(W)$. In other cases, such analytical calculations are either untenable or the distribution of $W$ is unknown such that no calculations are possible.
 
-The Law of Large Numbers is useful here. Let $W_i$, where $i=1,\dots,n$ be an estimator of $\theta$ and a statistic of some random sample $\vec{X}_i=X_{i1},\dots,X_{im}$. As $n\rightarrow \infty$,
-
-$${1 \over n}\sum_{i=1}^{n}{W_i} = \bar{W}=E(W)$$
-
-$$\text{and}$$
-
-$${1 \over {n-1}}\sum_{i=1}^{n}{\left(W_i-\bar{W}\right)^2}=S^2_W=Var(W)$$
-
-Essentially, the sample average of $\vec{W}=W_1,\dots, W_n$ is an estimator of $E(W)$ and the sample variance of $\vec{W}$ is an estimator of $Var(W)$. As we mortals are unlikely to witness $n\rightarrow \infty$, the quality of these estimates will be subject to size $n$. 
-
-Assuming we have values of $E(W)$ and $Var(W)$, we can calculate two additional statistics to aid in our understanding of $W$. These include bias and mean-squared-error (MSE). Bias tells us the accuracy of an estimator while MSE tells us the precision of an estimator and are calculated as follows:
-
-$$Bias(W) = E(W) - \theta$$
-
-$$MSE(W) = E\left\{(W-\theta)^2\right\} = Var(W) + \left\{Bias(W)^2\right\}$$
-
-Bias and MSE can be calculating from a random sample of $W$. By the Law of Large Numbers, as $n \rightarrow \infty$,
-
-$${1 \over n} \sum^n_{i=1}{\left(W_i - \theta\right)}=\bar{W}-\theta=Bias(W)$$
-
-$${1 \over {n-1}}\sum^n_{i=1}\left(W_i-\theta\right)^2= S^2_W+(\bar{W} -\theta)^2=MSE(W)$$
-
-Bias and MSE are random variables when estimated as a function of $\vec{W}$. These estimates of bias and MSE will then require confidence intervals to account for their uncertainty. 
-
-Simulation studies are focused on generating $\vec{X}_i, \dots \vec{X}_n$ and calculating $\vec{W}$ so that we may empirically derive the properties of $W$ when analytical solutions are untenable or unavailable. Understanding the generation of $\vec{X}_i$ is our next step.
 
 ## Simulation studies
+
+Analytical approaches such as above are not always possible. The sampling distribution of $W$ may not be available or the necessary mathematical operations are untenable. Suppose, however, that we have a random sample of iid estimators $W_1, \dots, W_m$ and the distribution of $W_i$ is unknown. Furthermore, we have observations of the random sample $w_1, \dots, w_m$. The sample mean $\bar{w}$ of $w_1, \dots, w_m$ is an estimate of $\mathrm{E}W$ and the sample variance $s^2_W$ is an estimate of $\mathrm{Var}W$. As $m$ increases, the quality of the estimates improves.
+
+Each $w_i$ is the result of $W(\mathbf{d}_i)$ where $\mathbf{d}_i$ is an observed sample or dataset. The observed data 
+
+
+
+
+
+
+

@@ -9,7 +9,7 @@ This section is a curation of resources for learning R. Readings are primarily s
 * [*Advanced R*](https://adv-r.hadley.nz/) by Hadley Wickham. Abbreviated as "adv-r".
 * [*R for Data Science*](http://r4ds.had.co.nz/) by Grolemund and Wickham. Abbreviated as "r4ds".
 
-In each R essentials chapter, including this chapter, there is a list of *readings*. Following the list of readings is a *focus* section that outlines important concepts to be gained from the readings. At the end of each chapter, exercises are (usually) provided. 
+In each R essentials chapter, including this chapter, there is a list of *readings*. Following the list of readings is a *focus* section that outlines important concepts to be gained from the readings. At the end of each chapter, exercises are (usually) provided. When I feel the curated readings are insufficient, I will provide additional text within the chapters.
 
 
 ## Readings
