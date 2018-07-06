@@ -1,5 +1,5 @@
 
-# Multiple replications and conditions
+# Multiple replications and conditions {#gen_mult}
 
 * generation contained in a function
 * for-loop, `replicate()`

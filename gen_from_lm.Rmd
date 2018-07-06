@@ -1,5 +1,5 @@
 
-# Generation from linear models
+# Generation from linear models {#gen_from_lm}
 
 
 ## Linear combination review

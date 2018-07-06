@@ -17,6 +17,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, error = TRUE, comment = "#>", cache = TRUE)
 ```
 
+
+\newcommand{\b}[1] {\boldsymbol{#1}}
+
+
 # Preface {-}
 
 Published with [bookdown](https://bookdown.org/).

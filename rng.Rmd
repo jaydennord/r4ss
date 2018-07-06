@@ -1,6 +1,6 @@
 
 
-# Random sampling and variate generation
+# Random sampling and variate generation {#random}
 
 ```{r, include = FALSE}
 set.seed(12479)

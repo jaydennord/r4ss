@@ -19,13 +19,17 @@ $\mathrm{Bias}(\bar{X})=\mathrm{E}\left(\bar{X} - \mu\right) = \mathrm{E}\bar{X}
 
 ## Simulation studies
 
-Analytical approaches such as above are not always possible. The sampling distribution of $W$ may not be available or the necessary mathematical operations are untenable. Suppose, however, that we have a random sample of iid estimators $W_1, \dots, W_m$ and the distribution of $W_i$ is unknown. Furthermore, we have observations of the random sample $w_1, \dots, w_m$. The sample mean $\bar{w}$ of $w_1, \dots, w_m$ is an estimate of $\mathrm{E}W$ and the sample variance $s^2_W$ is an estimate of $\mathrm{Var}W$. As $m$ increases, the quality of the estimates improves.
+Analytical approaches such as above are not always possible. The sampling distribution of $W$ may not be available or the necessary mathematical operations are untenable. Suppose, however, that we have a random sample of iid estimators $W_1, \dots, W_m$, the distribution of $W_i$ is unknown, and $m$ is the total numbre of *replications* while $i$ is an index for a replication. Furthermore, we have observations of the random sample $w_1, \dots, w_m$. The sample mean $\bar{w}$ of $w_1, \dots, w_m$ is an estimate of $\mathrm{E}W$ and the sample variance $s^2_W$ is an estimate of $\mathrm{Var}W$. As $m$ increases, the quality of the estimates improves.
 
-Each $w_i$ is the result of $W(\mathbf{d}_i)$ where $\mathbf{d}_i$ is an observed sample or dataset. The observed data 
+Each $w_i$ is the result of $W(\mathbf{d}_i)$ where $\mathbf{d}_i$ is an observed sample or dataset. The observed data could be a single variable or a collection of variables presumed to follow a model and distribution with some parameters  $\vec{\theta}$. The parameters could be distribution parameters (mean, variance), regression coefficients, or some other statistic that defines the model. 
+
+In applied statistics, we are interested in estimating and making inferences about some parameter $\theta$. Usually, only one replication of $n$ cases is gathered from the population and the analyst supposes a model to estimate $\theta$. It is assumed that the observed data are the realized values of random samples from a defined distribution or model. The analyst then makes inferences about the population using estimates of $\theta$. 
+
+In simulation studies, we are interested in the properties of some $W$ that is an estimator of $\theta$. 
 
 
 
 
-
+## R
 
 
