@@ -7,7 +7,7 @@
 * [intro-r - 2 - Simple manipulations; numbers and vectors](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Simple-manipulations-numbers-and-vectors)
     * skip 2.7
 * [intro-r - 3 - Objects, their modes and attributes](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Objects)
-* [adv-r - 4 - Vectors](https://adv-r.hadley.nz/data-structures.htm) (misnomer chapter title)
+* [adv-r - 4 - Vectors](https://adv-r.hadley.nz/vectors-chap.html)
 * [here - Matrices][Matrices]
 * [r4ds - 20 - Vectors](http://r4ds.had.co.nz/vectors.html)
     * skip 20.4.5, 20.7.2
@@ -199,7 +199,7 @@ Other useful functions related to matrices.
 |`t`|transpose|
 |`solve`|inverse of a square matrix. Can also solve a system of linear equations if a second argument is provided|
 |`det`|find determinant of a matrix|
-|`eigen`|find eigenvalues and eigenvalues of a matrix|
+|`eigen`|find eigenvalues and eigenvectors of a matrix|
 |`chol`|performs a Cholesky decomposition on a matrix - useful for multivariate data generation|
 
 `diag` is another matrix-related though frustrating function because its behavior and results change depending on the input. The table below describes the different results of some object `x`.
