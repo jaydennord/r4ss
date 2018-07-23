@@ -13,7 +13,7 @@ In the [Introduction][Statistics review] to this book.
 * we need to know how to randomly generate data
 
 
-## Pseudo-randomness [INCOMPLETE]
+## Pseudo-randomness
 
 Computers cannot generate truly random numbers. Instead, complex algorithms mimic randomness to produce *pseudo-random numbers*. These algorithms begin with an arbitrary starting value or *seed* that updates with each generated number. Unless otherwise specified, the seed is often based on the internal clock of the computer's processor.
 
@@ -118,6 +118,8 @@ The sample covariance matrix is roughly equivalent to the population covariance 
 ## Exercises
 
 Use `set.seed()` for these exercises for reproducible results.
+
+1. Suppose we have $X_1, \dots, X_{20}$ such that $X_i \sim Bernoulli(p_i)$ and $p_i \sim Beta(2, 3)$. Note that the Bernoulli distribution results in 0 or 1 and the $p$ parameter ranges between 0 and 1. Meanwhile, the Beta distribution ranges between 0 and 1. Generate the random sample $X_i, \dots, X_{20}$. Hint: The Bernoulli distribution is a special case of the Binomial distribution, so `rbinom()` may be used.
 
 1. Generate a random sample $X_1, \dots X_{100}$ such that $X_i \sim N(10, 3)$. Then, randomly assign data in this sample to be missing such that each case has a 5% chance of being missing. Hint: `sample()`, `runif()`, or `rbinom()` may be used for solving the missingness portion. Hint 2: Remember logical indexing.
 

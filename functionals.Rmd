@@ -48,7 +48,7 @@ Functionals are functions that take other functions as input and return some vec
     ```
     Recreate `x` using sequences and `replicate`. 
 
-1. Consider the following code block involving matrix multiplication.
+1. ~~Consider the following code block involving matrix multiplication.~~
     ```{r}
     a <- matrix(1:4, ncol = 2)
     b <- matrix(c(5, 3, 8, 9, 3, 4), ncol = 2)
@@ -57,4 +57,19 @@ Functionals are functions that take other functions as input and return some vec
     
     b %*% a
     ```
-    Using `vapply`, create a function `mm` to mimic `%*%` wihtout using `%*%`. 
+    ~~Using `vapply`, create a function `mm` to mimic `%*%` wihtout using `%*%`.~~
+
+1. Consider the following matrices already contained in a list (helpful).
+
+    ```{r}
+    lst <- list(
+      a <- matrix(c(5, 4, 3, 9), nrow = 2),
+      b <- matrix(c(2, 9, 1, 2), nrow = 2),
+      c <- matrix(c(3, 10, 4, 3), nrow = 2)
+    )
+    ```
+
+    a. Recreate `lst` using a functional.
+    b. Use a functional or functionals to create a $2\times 2$ matrix where each element is the average of the corresponding elements in the three matrices of `lst`. 
+
+1. Recreate the `Map()` function without using `Map()`, `mapply()`, or any function from `purrr`.
