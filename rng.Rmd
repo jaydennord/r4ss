@@ -3,15 +3,74 @@
 # Random sampling and variate generation {#random}
 
 ```{r, include = FALSE}
+set.seed(1111111)
+```
+
+In the [Introduction][Statistics review] to this book.
+
+* obtain sample of estimators
+* sample depends on "sample" of randomly generated data
+* we need to know how to randomly generate data
+
+
+## Pseudo-randomness [INCOMPLETE]
+
+Computers cannot generate truly random numbers. Instead, complex algorithms mimic randomness to produce *pseudo-random numbers*. These algorithms begin with an arbitrary starting value or *seed* that updates with each generated number. Unless otherwise specified, the seed is often based on the internal clock of the computer's processor.
+
+The use of an algorithm makes pseudo-randomness predictable and reproducible. If one writes a program and provides a fixed value for the seed, then the program will return the same results on repeated runs. All random number generation scripts should begin with setting the seed.
+
+In R, setting the seed is accomplished with the `set.seed()` function that takes an arbitrary number as its argument. In the next codeblock, the `runif()` function is used to generate a random number between 0 and 1. Note that if you run this code in your own R session, the first instance of `runif()` will return a different result. When the same seed is invoked, however, the second `runif()` will return the same result as below.
+
+```{r}
+runif(n = 1)
+
 set.seed(12479)
+runif(n = 1)
+```
+
+Pending an investigation of cyclical relationships among generated values, the seed needs to be set only once. 
+
+```{r}
+# one run
+set.seed(12479)
+
+x <- runif(n = 5)
+
+y <- runif(n = 5)
+
+x; y
+
+# another run that produces the same results
+set.seed(12479)
+
+x <- runif(n = 5)
+
+y <- runif(n = 5)
+
+x; y
+```
+
+Remember that the random number generation algorithm updates each time it is used to generate a value. This is illustrated below. The first run uses the random number generator to produce two random numbers with seed `12345`. In the subsequent run, the seed is reset to `12345` and two separate `runif()` functions generate two random numbers. The values are equivalent to the first run; the same seed was used, the same generating function was used, and a random number was requested twice. 
+
+```{r}
+# first run
+set.seed(12345)
+
+runif(n = 2)
+
+# reset
+set.seed(12345)
+
+runif(n = 1)
+
+runif(n = 1)
 ```
 
 
-## Random sampling [INCOMPLETE]
+## Univariate random samples [INCOMPLETE]
+
 
 `sample()`
-
-## Univariate random samples [INCOMPLETE]
 
 For many distributions, R provides functions for density, cumulative distribution functions, quantile functions, and random generation. These functions are of the form `dxxx`, `pxxx`, `qxxx`, and `rxxx`. We are more interested in the random generation functions `rxxx`. See `help(Distributions)` for a full list. 
 
@@ -54,12 +113,12 @@ cov(x)
 The sample covariance matrix is roughly equivalent to the population covariance matrix `Sigma` as expected. The sample mean vector is also roughly equivalent to the population mean vector as expected. It appears that `MASS::mvrnorm` is simpler than the `chol` method. The `chol` method, however, will be useful for generating normally distributed data with additional skew and kurtosis.
 
 
-## Pseudo-randomness [INCOMPLETE]
-
-Computer programs used for random sample generation do not produce truly random values. Instead, complex algorithms mimic randomness to produce *pseudo-random numbers*. These algorithms begin with an arbitrary starting value, or *seed*, that updates with each generated values. Unless otherwise specified, the seed is based on the internal clock of the computer's processor. (need to fact check that statement)
-
-Pseudo-randomness for simulation studies has the advantage of reproducibility. If one writes a program and provides a fixed value for the seed, then the program will return the same results on every run. 
 
 
 ## Exercises
 
+Use `set.seed()` for these exercises for reproducible results.
+
+1. Generate a random sample $X_1, \dots X_{100}$ such that $X_i \sim N(10, 3)$. Then, randomly assign data in this sample to be missing such that each case has a 5% chance of being missing. Hint: `sample()`, `runif()`, or `rbinom()` may be used for solving the missingness portion. Hint 2: Remember logical indexing.
+
+1. Randomly generate a sample of size 100 with three variables that have the following characteristics. $X$ has variance 5, $Y$ has variance 3, $Z$ has variance 2, $X$ and $Y$ are correlated .3, and $Z$ is uncorrelated with the other variables. All variables have means of 0. Confirm your generation with `cov()` and `cor()`.
