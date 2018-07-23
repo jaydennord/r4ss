@@ -74,6 +74,8 @@ runif(n = 1)
 
 For many distributions, R provides functions for density, cumulative distribution functions, quantile functions, and random generation. These functions are of the form `dxxx`, `pxxx`, `qxxx`, and `rxxx`. We are more interested in the random generation functions `rxxx`. See `help(Distributions)` for a full list. 
 
+* vectorization of `rxxx` functions.
+
 
 
 ## Multivariate normal samples [INCOMPLETE]
