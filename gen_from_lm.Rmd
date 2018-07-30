@@ -12,7 +12,7 @@ $$\vec{Y} = \mathbf{X}\mathbf{b}$$
 
 Then,
 
-$$E(Y) = E(\mathbf{X})\mathbf{b}$$
+$$E(Y) = E(\mathbf{X})' \mathbf{b}$$
 
 $$\text{and}$$
 
@@ -43,4 +43,29 @@ $$Var(Y) = b_1^2 Var(X_1) + b_2^2 Var(X_2) + 2 b_1 b_2 Cov(X_1, X_2)$$
 
 ## Exercises
 
-idk
+1. Consider the following correlation matrix of three predictors and a table of means, variances, and regression coefficients for the same three predictors and an outcome.
+
+    $$\left[\matrix{
+      1  \\
+      .3 & 1 \\ 
+      .2 & .1 & 1
+    }\right]$$
+    
+    |Variable|$\mu$|$\sigma^2$|$b$|
+    |---|---|---|---|
+    |$X_1$    | 100   | 25  | .19|
+    |$X_2$    | 100   | 30  | .30|
+    |$X_3$    | 50    | 10  | .22|
+    |$Y$      | 60    | 20  |    |
+    
+    Generate a dataset with 100 samples using the above information as population parameters. Assume all variables are normally distributed.
+
+1. Consider a mediation model where $X$ predicts $M$ and $M$ predicts $Y$. The standardized effect of $X$ on $M$ is .3, the standardized effect of $M$ on $Y$ is .3, and the direct standardized effect of $X$ on $Y$ is .1. Two covariates, each for $M$ and $Y$, account for 30% of the variability of their respective outcomes. Generate 100 samples reflecting this information.
+
+
+1. Consider an SEM with latent predictors $\xi_1$ and $\xi_2$ predicting a latent outcome $\eta$. All latent variables have variance 1, the predictors are correlated .3, and the standardized effects of both predictors on $\eta$ is .3. Each latent variable has three indicators with 70% reliability. One indicator for $\xi_1$, however, has a residual correlation of .3 with an indicator from $\xi_2$. Generate 100 samples using this information and retain only the indicators in the final dataset.
+
+1. Generate data from a model with 10 blocks, 5 cases per block, and using the following information. A single predictor has a within-block effect of .3 on a single outcome and a between-block effect of .3 on that same outcome. The ICC for this model is .18; that is, 18% of the variance of the outcome is between-level. (exercise adapted from Natalie Koziol)
+
+1. ~~Generate 100 samples using the following parameters in a mediation model. Cases are randomly assigned to one of two treatment conditions. On some outcome variable $M_2$, there is a true difference in 10 units between the two treatment conditions. A covariate, $M_1$ will account for 30% of the variability in $M_2$.~~
+
